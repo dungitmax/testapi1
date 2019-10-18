@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@id/list_api_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="6">
+
+        <TextView
+            android:id="@id/title_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/title_list"
+            android:textSize="@dimen/title_list_text_size" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/list_api"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/button_linear"
+            android:layout_below="@id/title_list"
+            android:scrollbars="vertical" />
+
+        <LinearLayout
+            android:id="@id/button_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:weightSum="5">
+
+            <Button
+                android:id="@id/add_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name_add_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@id/clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name_clear_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@id/load_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name_load_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name_save_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@id/execute_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/name_execute_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@id/result_list_api_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4">
+
+        <TextView
+            android:id="@id/title_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/title_result"
+            android:textSize="@dimen/title_list_text_size" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_list_text_size">15sp</dimen>
+    <dimen name="list_api_margin_bottom">40dp</dimen>
+    <dimen name="button_size">8sp</dimen>
+</resources>
