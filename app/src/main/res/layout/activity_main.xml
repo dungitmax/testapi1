@@ -8,36 +8,38 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
-        android:id="@id/list_api_relative"
+        android:id="@+id/rtl_list_api"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="6">
 
         <TextView
-            android:id="@id/title_list"
+            android:id="@+id/tv_list_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/title_list"
-            android:textSize="@dimen/title_list_text_size" />
+            android:textSize="@dimen/title_list_text_size"
+            android:textStyle="bold" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@id/list_api"
+            android:id="@+id/rcl_list_api"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/button_linear"
-            android:layout_below="@id/title_list"
+            android:layout_above="@id/ln_buttons"
+            android:layout_below="@id/tv_list_title"
             android:scrollbars="vertical" />
 
         <LinearLayout
-            android:id="@id/button_linear"
+            android:id="@+id/ln_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:gravity="center"
             android:weightSum="5">
 
             <Button
-                android:id="@id/add_button"
+                android:id="@+id/btn_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -46,7 +48,7 @@
                 android:textSize="@dimen/button_size" />
 
             <Button
-                android:id="@id/clear_button"
+                android:id="@+id/btn_clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -55,7 +57,7 @@
                 android:textSize="@dimen/button_size" />
 
             <Button
-                android:id="@id/load_button"
+                android:id="@+id/btn_load"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -64,7 +66,7 @@
                 android:textSize="@dimen/button_size" />
 
             <Button
-                android:id="@id/save_button"
+                android:id="@+id/btn_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -73,7 +75,7 @@
                 android:textSize="@dimen/button_size" />
 
             <Button
-                android:id="@id/execute_button"
+                android:id="@+id/btn_execute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -86,18 +88,24 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <View
+        android:layout_width="@dimen/separator_w"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_shadow_start_color" />
+
     <RelativeLayout
-        android:id="@id/result_list_api_relative"
+        android:id="@+id/rtl_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="4">
 
         <TextView
-            android:id="@id/title_result"
+            android:id="@+id/tv_result_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/title_result"
-            android:textSize="@dimen/title_list_text_size" />
+            android:textSize="@dimen/title_list_text_size"
+            android:textStyle="bold" />
     </RelativeLayout>
 </LinearLayout>

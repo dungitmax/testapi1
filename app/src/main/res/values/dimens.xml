@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="title_list_text_size">15sp</dimen>
+    <dimen name="title_list_text_size">16sp</dimen>
     <dimen name="list_api_margin_bottom">40dp</dimen>
     <dimen name="button_size">8sp</dimen>
+    <dimen name="edt_param_value_w">0dp</dimen>
+    <dimen name="tv_param_name_w">0dp</dimen>
+    <dimen name="card_view_margin">5dp</dimen>
+    <dimen name="separator_w">1dp</dimen>
 </resources>

@@ -33,9 +33,9 @@ public class ParamView extends LinearLayout {
     private void init(Context context) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.param_view, this, true);
-        mParamNameTv = findViewById(R.id.paramNameTv);
-        mParamValEdt = findViewById(R.id.paramValEdt);
+        inflater.inflate(R.layout.view_param, this, true);
+        mParamNameTv = findViewById(R.id.tv_param_name);
+        mParamValEdt = findViewById(R.id.edt_param_value);
     }
 
     public void setParamName(String paramName) {

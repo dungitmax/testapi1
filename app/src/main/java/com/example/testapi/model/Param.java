@@ -1,10 +1,12 @@
 package com.example.testapi.model;
 
+/**
+ * An object to hold necessary information of a method's parameter.
+ */
 public class Param {
     private String mName;
-    // Kiểu param, vd mType = String.class.
+    //Param type, example: String.class.
     private Class mType;
-    // Giá trị param có thể là bất kì kiểu dữ liệu nào, nên để Object cho nó chung chung.
     private Object mValue;
 
     public Param(final String name, final Class type, final Object value) {
@@ -12,6 +14,8 @@ public class Param {
         this.mType = type;
         this.mValue = value;
     }
+
+    public Param() {}
 
     public String getName() {
         return mName;

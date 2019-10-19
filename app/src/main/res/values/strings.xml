@@ -3,8 +3,10 @@
     <string name="title_list">API Sequence List</string>
     <string name="title_result">Result</string>
     <string name="name_add_button">+</string>
-    <string name="name_clear_button">clear</string>
-    <string name="name_load_button">load</string>
-    <string name="name_save_button">save</string>
-    <string name="name_execute_button">execute</string>
+    <string name="name_clear_button">Clear</string>
+    <string name="name_load_button">Load</string>
+    <string name="name_save_button">Save</string>
+    <string name="name_execute_button">Execute</string>
+    <string name="select_method">--Select method--</string>
+    <string name="colon">:</string>
 </resources>
