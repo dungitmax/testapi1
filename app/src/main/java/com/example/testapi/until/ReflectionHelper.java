@@ -55,7 +55,7 @@ public class ReflectionHelper {
                 p = new Param(c.getSimpleName(), c, null);
                 paramList.add(p);
             }
-            md = new MethodDetail(clazz, m.getName(), paramList);
+            md = new MethodDetail(clazz, m.getReturnType(), m.getName(), paramList);
             methodDetailList.add(md);
             Log.d(TAG, "ReflectionHelper#getMethodDetailList: method = " + m.getName() + ", params num = " + paramList.size());
         }
@@ -70,6 +70,9 @@ public class ReflectionHelper {
      */
     public Object run(MethodDetail methodDetail) {
         Log.d(TAG, "ReflectionHelper#run() called with: methodDetail = [" + methodDetail + "]");
+        if (methodDetail.isNotSpecified()) {
+            return "Can not run unspecified method!";
+        }
         Class clazz = methodDetail.getClazz();
         String methodName = methodDetail.getMethodName();
         Class[] paramTypes = getParamsType(methodDetail.getParams());
@@ -101,10 +104,39 @@ public class ReflectionHelper {
 
     private Object[] paramsToVargs(List<Param> paramList) {
         Object[] varArgs = new Object[paramList.size()];
+        Param p;
         for (int i = 0; i < paramList.size(); i++) {
-            varArgs[i] = paramList.get(i).getValue();
+            p = paramList.get(i);
+            varArgs[i] = castParamsToOriginalType(p);
         }
         return varArgs;
+    }
+
+    //TODO: find a cleaner way to cast value back to it's original type.
+    private Object castParamsToOriginalType(Param p) {
+        //Value already at the right type.
+        if (p.getValue().getClass() == p.getClass()) {
+            return p.getValue();
+        }
+
+        Object ret;
+        Class type = p.getType();
+        if (type == int.class || type == Integer.class) {
+            ret = Integer.parseInt(p.getValue().toString());
+        } else if (type == double.class || type == Double.class) {
+            ret = Double.parseDouble(p.getValue().toString());
+        } else if (type == long.class || type == Long.class) {
+            ret = Long.parseLong(p.getValue().toString());
+        } else if (type == float.class || type == Float.class) {
+            ret = Float.parseFloat(p.getValue().toString());
+        } else if (type == byte.class || type == Byte.class) {
+            ret = Byte.parseByte(p.getValue().toString());
+        } else if (type == short.class || type == Short.class) {
+            ret = Short.parseShort(p.getValue().toString());
+        }  else {
+            ret = p.getValue();
+        }
+        return ret;
     }
 
     private Class[] getParamsType(List<Param> paramList) {

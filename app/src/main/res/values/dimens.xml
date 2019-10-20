@@ -7,4 +7,5 @@
     <dimen name="tv_param_name_w">0dp</dimen>
     <dimen name="card_view_margin">5dp</dimen>
     <dimen name="separator_w">1dp</dimen>
+    <dimen name="tv_result_padding">5dp</dimen>
 </resources>

@@ -107,5 +107,18 @@
             android:text="@string/title_result"
             android:textSize="@dimen/title_list_text_size"
             android:textStyle="bold" />
+        <ScrollView
+            android:id="@+id/scr_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_result_title">
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tv_result_padding"
+                tools:text="int add(int, int) = 2"/>
+        </ScrollView>
     </RelativeLayout>
 </LinearLayout>

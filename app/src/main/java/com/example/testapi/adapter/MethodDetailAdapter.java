@@ -3,6 +3,8 @@ package com.example.testapi.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,22 +45,8 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
 
     private List<String> detailToStringList(List<MethodDetail> allMethodDetailList) {
         List<String> allMethodNameList = new ArrayList<>();
-        MethodDetail detail;
-        for (int i = 0; i < allMethodDetailList.size(); i++) {
-            detail = allMethodDetailList.get(i);
-            List<Param> paramList = detail.getParams();
-            StringBuilder methodName = new StringBuilder();
-            methodName.append(detail.getMethodName()).append("(");
-            Param p;
-            for (int j = 0; j < paramList.size(); j++) {
-                p = paramList.get(j);
-                methodName.append(p.getType().getSimpleName());
-                if (j < paramList.size() - 1) {
-                    methodName.append(", ");
-                }
-            }
-            methodName.append(")");
-            allMethodNameList.add(methodName.toString());
+        for (MethodDetail md : mAllMethodDetailList) {
+            allMethodNameList.add(md.toString(false));
         }
         allMethodNameList.add(mContext.getResources().getString(R.string.select_method));
         return allMethodNameList;
@@ -75,8 +63,8 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
     @Override
     public void onBindViewHolder(@NonNull final APIViewHolder holder, int position) {
         MethodDetail md = mMethodDetailList.get(position);
-        if (md.getClazz() == null) {
-            //Method not specified.
+        holder.mPosition = position;
+        if (md.isNotSpecified()) {
             holder.setSpinnerPos(mItemSelectPos);
         } else {
             holder.setSpinnerPos(mAllMethodDetailList.indexOf(md));
@@ -91,6 +79,7 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
     public class APIViewHolder extends RecyclerView.ViewHolder {
         Spinner mApiNameSpn;
         LinearLayout mParamContainerLn;
+        int mPosition;
 
         private APIViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -103,8 +92,10 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
                     if (i == mItemSelectPos) {
                         //--Select-- is selected.
                         mParamContainerLn.removeAllViews();
+                        mMethodDetailList.get(mPosition).unSpecify();
                     } else {
-                        setParams(mAllMethodDetailList.get(i));
+                        mMethodDetailList.set(mPosition, mAllMethodDetailList.get(i));
+                        setParams(mMethodDetailList.get(mPosition));
                     }
                 }
 
@@ -123,7 +114,7 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
             List<Param> paramList = detail.getParams();
             ParamView pv;
             String paramName;
-            for (Param p : paramList) {
+            for (final Param p : paramList) {
                 pv = new ParamView(mContext);
                 paramName = p.getName();
                 pv.setParamName(paramName + mContext.getResources().getString(R.string.colon));
@@ -133,6 +124,22 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
                     pv.setParamVal(paramVal);
                 }
                 mParamContainerLn.addView(pv);
+                pv.getParamValEdt().addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        p.setValue(s.toString());
+                    }
+                });
             }
         }
 
