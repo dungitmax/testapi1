@@ -1,6 +1,7 @@
 package com.example.testapi;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -85,23 +86,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void clearMethod() {
-        int size = mMethodDetailList.size();
-        if (size > 0) {
-            for (int i = 0; i < size; i++) {
-                mMethodDetailList.remove(0);
-            }
-            mAdapter.notifyItemRangeRemoved(0, size);
-        }
+        mMethodDetailList.clear();
+        mAdapter.notifyDataSetChanged();
     }
 
     private void executeMethod() {
         Date currentDate = new Date(System.currentTimeMillis());
-        mResultTv.append("=====" + currentDate.toString() + "=====\n");
+        mResultTv.append(">>" + currentDate.toString() + "\n");
         for (MethodDetail md : mMethodDetailList) {
             Object ret = ReflectionHelper.getInstance().run(md);
             mResultTv.append(md.toString(true) + " = " + ret.toString() + "\n");
         }
         mResultTv.append("\n");
-        mResultScr.fullScroll(View.FOCUS_DOWN);
+        Handler h = new Handler();
+        //Must delay to scroll down the result log correctly.
+        h.postDelayed(() -> {
+            mResultScr.fullScroll(View.FOCUS_DOWN);
+        }, 10L);
     }
 }

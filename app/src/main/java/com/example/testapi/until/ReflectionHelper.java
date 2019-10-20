@@ -81,7 +81,7 @@ public class ReflectionHelper {
             Method method = clazz.getDeclaredMethod(methodName, paramTypes);
             Object receiver = clazz.newInstance();
             ret = run(method, receiver, methodDetail.getParams());
-        } catch (NoSuchMethodException | IllegalAccessException | InstantiationException e) {
+        } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | EmptyParamException e) {
             e.printStackTrace();
             ret = e.getMessage();
         }
@@ -89,7 +89,7 @@ public class ReflectionHelper {
         return ret;
     }
 
-    private Object run(Method method, Object receiver, List<Param> paramList) {
+    private Object run(Method method, Object receiver, List<Param> paramList) throws EmptyParamException {
         Log.d(TAG, "run() called with: method = [" + method + "], receiver = [" + receiver + "], paramList = [" + paramList + "]");
         Object ret;
         try {
@@ -102,7 +102,7 @@ public class ReflectionHelper {
         return ret;
     }
 
-    private Object[] paramsToVargs(List<Param> paramList) {
+    private Object[] paramsToVargs(List<Param> paramList) throws EmptyParamException {
         Object[] varArgs = new Object[paramList.size()];
         Param p;
         for (int i = 0; i < paramList.size(); i++) {
@@ -113,7 +113,10 @@ public class ReflectionHelper {
     }
 
     //TODO: find a cleaner way to cast value back to it's original type.
-    private Object castParamsToOriginalType(Param p) {
+    private Object castParamsToOriginalType(Param p) throws EmptyParamException {
+        if (p.getValue() == null) {
+            throw new EmptyParamException();
+        }
         //Value already at the right type.
         if (p.getValue().getClass() == p.getType()) {
             return p.getValue();
@@ -147,4 +150,11 @@ public class ReflectionHelper {
         return types;
     }
 
+    class EmptyParamException extends Exception {
+
+        @Override
+        public String getMessage() {
+            return "Error: Found an empty param, please check";
+        }
+    }
 }

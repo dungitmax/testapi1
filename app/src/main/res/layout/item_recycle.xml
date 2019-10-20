@@ -15,7 +15,7 @@
             android:gravity="end">
 
             <Spinner
-                android:id="@+id/spn_api_name"
+                android:id="@+id/spn_method_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -23,7 +23,7 @@
                 android:id="@+id/ln_params"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spn_api_name"
+                android:layout_below="@id/spn_method_name"
                 android:orientation="vertical" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>

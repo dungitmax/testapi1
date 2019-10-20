@@ -21,7 +21,7 @@ import com.example.testapi.view.ParamView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapter.APIViewHolder> {
+public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapter.MethodViewHolder> {
 
     private Context mContext;
     //All methods in the class.
@@ -54,14 +54,14 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
 
     @NonNull
     @Override
-    public APIViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public MethodViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.item_recycle, null);
-        return new APIViewHolder(view);
+        return new MethodViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final APIViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MethodViewHolder holder, int position) {
         MethodDetail md = mMethodDetailList.get(position);
         holder.mPosition = position;
         if (md.isNotSpecified()) {
@@ -76,17 +76,17 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
         return mMethodDetailList.size();
     }
 
-    public class APIViewHolder extends RecyclerView.ViewHolder {
-        Spinner mApiNameSpn;
+    public class MethodViewHolder extends RecyclerView.ViewHolder {
+        Spinner mMethodNameSpn;
         LinearLayout mParamContainerLn;
         int mPosition;
 
-        private APIViewHolder(@NonNull final View itemView) {
+        private MethodViewHolder(@NonNull final View itemView) {
             super(itemView);
-            mApiNameSpn = itemView.findViewById(R.id.spn_api_name);
+            mMethodNameSpn = itemView.findViewById(R.id.spn_method_name);
             mParamContainerLn = itemView.findViewById(R.id.ln_params);
-            mApiNameSpn.setAdapter(mAllMethodSpinnerAdapter);
-            mApiNameSpn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            mMethodNameSpn.setAdapter(mAllMethodSpinnerAdapter);
+            mMethodNameSpn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     if (i == mItemSelectPos) {
@@ -106,7 +106,7 @@ public class MethodDetailAdapter extends RecyclerView.Adapter<MethodDetailAdapte
         }
 
         void setSpinnerPos(int i) {
-            mApiNameSpn.setSelection(i);
+            mMethodNameSpn.setSelection(i);
         }
 
         void setParams(MethodDetail detail) {
