@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    tools:context=".activity.TestActivity">
+
+    <RelativeLayout
+        android:id="@+id/rtl_list_method"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="6">
+
+        <TextView
+            android:id="@+id/tv_list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/title_list"
+            android:textSize="@dimen/title_list_text_size"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcl_list_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/ln_buttons_method"
+            android:layout_below="@id/tv_list_title"
+            android:scrollbars="vertical" />
+
+        <LinearLayout
+            android:id="@+id/ln_buttons_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:weightSum="5">
+
+            <Button
+                android:id="@+id/btn_add_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name_add_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@+id/btn_clear_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name_clear_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@+id/btn_load_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name_load_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@+id/btn_save_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/name_save_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@+id/btn_execute_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/name_execute_button"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="@dimen/separator_w"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_shadow_start_color" />
+
+    <RelativeLayout
+        android:id="@+id/rtl_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4">
+
+        <TextView
+            android:id="@+id/tv_result_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/title_result"
+            android:textSize="@dimen/title_list_text_size"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:id="@+id/scr_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/ln_buttons_result"
+            android:layout_below="@id/tv_result_title">
+
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tv_result_padding"
+                tools:text="int add(int, int) = 2" />
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/ln_buttons_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_save_result"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/name_save_button"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+
+            <Button
+                android:id="@+id/btn_clear_result"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/name_clear_button"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAllCaps="false"
+                android:textSize="@dimen/button_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

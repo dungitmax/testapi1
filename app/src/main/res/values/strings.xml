@@ -9,4 +9,5 @@
     <string name="name_execute_button">Execute</string>
     <string name="select_method">--Select method--</string>
     <string name="colon">:</string>
+    <string name="please_enter_class_name">Please enter class name</string>
 </resources>
