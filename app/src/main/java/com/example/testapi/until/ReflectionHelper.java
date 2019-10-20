@@ -115,7 +115,7 @@ public class ReflectionHelper {
     //TODO: find a cleaner way to cast value back to it's original type.
     private Object castParamsToOriginalType(Param p) {
         //Value already at the right type.
-        if (p.getValue().getClass() == p.getClass()) {
+        if (p.getValue().getClass() == p.getType()) {
             return p.getValue();
         }
 
